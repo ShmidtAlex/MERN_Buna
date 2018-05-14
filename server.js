@@ -1,5 +1,7 @@
 //import config, {nodeEnv, logStars} from './config';
 import config from './config';
+import apiRouter from './api';
+//import fs from 'fs';
 //  console.log(config, nodeEnv);
 //  //invoke exported in config.js function directly
 //  logStars("some content");
@@ -13,12 +15,27 @@ import config from './config';
 
 import express from 'express';
 const server = express();
+//for setting ejs
+server.set('view engine', 'ejs');
+// server.get('/', (req, res) => {
+// 	res.send("Hello express!");
+// });
 server.get('/', (req, res) => {
-	res.send("Hello express!");
+	res.render('index', {
+		content: "Hello express and <em>EJS</em>!"
+	});
 });
-server.get('/about.html', (req, res) => {
-	res.send("The About page \n");
-});
+//instead of this combersome construction,
+// server.get('/about.html', (req, res) => {
+// 	fs.readFile("./about.html", (err, data) => {
+// 		res.send(data.toString());
+// 	})
+// });
+
+server.use('/api', apiRouter);
+//we will use middleware method of express:
+server.use(express.static("public"));
+//and we even don't need fs module enymore
 server.listen(config.port, () => {
 	console.log("express listening on port", config.port);
 });
