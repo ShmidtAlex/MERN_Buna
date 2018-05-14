@@ -18,7 +18,6 @@
   "author": "ShmidtAlex",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^2.5.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.19",
     "react": "^15.3.2",
@@ -31,6 +30,7 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.17.0",
+    "ejs": "^2.5.5",
     "eslint": "^3.7.1",
     "eslint-plugin-react": "^6.4.0",
     "nodemon": "^1.11.0",
