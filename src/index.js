@@ -1,27 +1,18 @@
+import data from './testData';
+console.log(data);
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
 
-//we can use any js variable
-const number = Math.random();
-//manage style property
-const color = number > 0.5 ? "green" : "red";
-//component is just a function
-const App = (props) => {
-	return (
-		<h2 style={{color:color,textAlign:"center"}} >
-			{props.headerMessage}
-			//commenting doesn't matters here it'll be wisible
-			// Hello, React with COMPONENTS!!! { number }
-		</h2>
-	);
-};
-App.propTypes ={
-	headerMessage: React.PropTypes.string.isRequired
-}
-App.defaultProps = {
-	headerMessage: "Hello, I'm default value of porps"
-}
 ReactDOM.render(
-	<App />,
+	<App contests={data.contests}/>,
 	document.getElementById('root')
 );
+//function for checking if componentWillUnmount works
+// setTimeout(() => {
+// 	ReactDOM.render(
+// 		// this element will mounted istead of <App /> element, meanwhile App will be unmounted
+// 		<h2>some h2</h2>,
+// 		document.getElementById('root')
+// 	)
+// }, 4000);

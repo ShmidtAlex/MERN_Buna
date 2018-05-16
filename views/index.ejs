@@ -1,6 +1,9 @@
 <%- include("header") -%>
 	<div id="root">
+		this content is invisible since we use the id=root in App.js and src/index.js
 		<%- content + Math.random() %>
 	</div>
 	
+	<div><%- content %></div>
+	<i>this "content" from server.js is availiable<i/>
 <%- include("footer") -%>

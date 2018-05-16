@@ -14,7 +14,13 @@ import apiRouter from './api';
 // })
 
 import express from 'express';
+import lessMiddleware from 'less-middleware';
+import path from 'path';
+
+
 const server = express();
+server.use(lessMiddleware(path.join(__dirname, 'public')));
+//server.use(express.static(path.join(__dirname, 'public')));
 //for setting ejs
 server.set('view engine', 'ejs');
 // server.get('/', (req, res) => {
@@ -35,6 +41,7 @@ server.get('/', (req, res) => {
 server.use('/api', apiRouter);
 //we will use middleware method of express:
 server.use(express.static("public"));
+//server.use('')
 //and we even don't need fs module enymore
 server.listen(config.port, () => {
 	console.log("express listening on port", config.port);
