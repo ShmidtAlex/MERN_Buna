@@ -1,15 +1,25 @@
 import React from 'react';
+import axios from 'axios';
 import Header from './Header';
 import ContestPreview from './ContestPreview';
-//Dynamic App
+//use API on serverside instead of this line:
+//import data from '../testData';
+
+//Dynamic App//
 class App extends React.Component {
 	state = { 
 		test: 37,
-		pageHeader: "Naming Contest with state"
+		pageHeader: "Naming Contest with state",
+		contests:[]
 	};
 	componentDidMount() {
-		// console.log('did Mount');
-		// debugger;
+		axios.get('/api/contests')
+			.then(resp => {
+				this.setState({
+					contests: resp.data.contests
+				});
+			})
+		.catch(console.error);
 	}
 	componentWillUnmount() {
 		// console.log('will unmount')
@@ -21,8 +31,9 @@ class App extends React.Component {
 				<Header message={this.state.pageHeader}/>
 				<div>
 					{this.state.test}
-					{this.props.contests.map(contest => 
-						<ContestPreview {...contest} />
+					
+					{this.state.contests.map(contest => 
+						<ContestPreview key={contest.id}{...contest} />
 					)}
 					
 				</div>
@@ -31,6 +42,10 @@ class App extends React.Component {
 	}
 }
 
+//for rendering empty array before data fetcing, replace this:
+//{this.props.contests.map(contest => 
+//on this:
+//{this.state.contests.map(contest => 
 //instead of this stateless App
 // const App = () => {
 // 	return (
