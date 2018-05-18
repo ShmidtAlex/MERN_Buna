@@ -26,11 +26,14 @@ server.set('view engine', 'ejs');
 // server.get('/', (req, res) => {
 // 	res.send("Hello express!");
 // });
-import './serverRender';
+import serverRender from './serverRender';
 server.get('/', (req, res) => {
-	res.render('index', {
-		content: "Hello express and <em>EJS</em>!"
-	});
+	serverRender()
+		.then(content => {
+			res.render('index', {
+				content
+			});
+		})
 });
 //instead of this combersome construction,
 // server.get('/about.html', (req, res) => {

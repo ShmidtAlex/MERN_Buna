@@ -8,9 +8,6 @@ const Header = ({message}) => {
 	return (
 		<h2 style={{color:color,textAlign:"center"}} className="Header text-center">
 			{message} <br/>
-			//commenting doesn't matters here it'll be wisible
-			<br/>
-			// Hello, React with COMPONENTS!!! { number }
 		</h2>
 	);
 };

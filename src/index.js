@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 ReactDOM.render(
-	<App />,
-	document.getElementById('root')
+	<App initialContests={[]}/>,
+	document.getElementById('root'),
 );
 //function for checking if componentWillUnmount works
 // setTimeout(() => {
