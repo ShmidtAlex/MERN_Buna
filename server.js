@@ -26,6 +26,7 @@ server.set('view engine', 'ejs');
 // server.get('/', (req, res) => {
 // 	res.send("Hello express!");
 // });
+import './serverRender';
 server.get('/', (req, res) => {
 	res.render('index', {
 		content: "Hello express and <em>EJS</em>!"
@@ -43,6 +44,7 @@ server.use('/api', apiRouter);
 server.use(express.static("public"));
 //server.use('')
 //and we even don't need fs module enymore
-server.listen(config.port, () => {
+server.listen(config.port, config.host, () => {
 	console.log("express listening on port", config.port);
+	console.log("express listening on host", config.host);
 });
