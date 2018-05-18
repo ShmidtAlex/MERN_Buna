@@ -1,18 +1,15 @@
 import data from './testData';
-//console.log(data);
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 
-ReactDOM.render(
-	<App initialContests={[]}/>,
-	document.getElementById('root'),
-);
-//function for checking if componentWillUnmount works
-// setTimeout(() => {
-// 	ReactDOM.render(
-// 		// this element will mounted istead of <App /> element, meanwhile App will be unmounted
-// 		<h2>some h2</h2>,
-// 		document.getElementById('root')
-// 	)
-// }, 4000);
+
+axios.get('/api/contests')
+	.then(resp => {
+		ReactDOM.render(
+			<App initialContests={resp.data.contests}/>,
+			document.getElementById('root')
+		);
+	})
+.catch(console.error);
